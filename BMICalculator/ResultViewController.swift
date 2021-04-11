@@ -10,12 +10,19 @@ import UIKit
 class ResultViewController: UIViewController {
     @IBOutlet var bmiLabel: UILabel!
     @IBOutlet var adviceLabel: UILabel!
+    @IBOutlet var backgroundImage: UIImageView!
     
     var bmiValue: String?
+    var advice: String?
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bmiLabel.text =  bmiValue
+        adviceLabel.text = advice
+        backgroundImage.image = image
+        
+        
         
     }
     

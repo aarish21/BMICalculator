@@ -38,6 +38,8 @@ class CalculateViewController: UIViewController {
     @IBAction func calculateBmi(_ sender: Any) {
         let height = heightSlider.value
         let weight = weightSlider.value
+        
+        
         calculatorBrain.calculateBMI(height: height, weight: weight)
         
         self.performSegue(withIdentifier: "bmiResult", sender: self)
@@ -46,11 +48,46 @@ class CalculateViewController: UIViewController {
         if segue.identifier == "bmiResult"{
             let destinationVC = segue.destination as! ResultViewController
             destinationVC.bmiValue = calculatorBrain.getBMIValue()
+            destinationVC.advice = calculatorBrain.getAdvice()
+            destinationVC.image = calculatorBrain.getImage()
+            
             
             
             
         }
         
+    }
+    
+}
+@IBDesignable extension UIButton {
+
+    @IBInspectable var borderWidth: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
+        }
+    }
+
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
+        }
+    }
+
+    @IBInspectable var borderColor: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
     }
 }
 
